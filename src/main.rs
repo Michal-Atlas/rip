@@ -100,6 +100,22 @@ Send files to the graveyard (/tmp/graveyard-$USER by default) instead of unlinki
                 .short("i")
                 .long("inspect"),
         )
+        // Improves compatibility with scripts which expect standard rm
+        .arg(
+            Arg::with_name("ignored_r")
+                .help("Ignored argument")
+                .short("R")
+                .short("r")
+                .long("recursive")
+                .hidden(true),
+        )
+        .arg(
+            Arg::with_name("ignored_f")
+                .help("Ignored argument")
+                .short("f")
+                .long("force")
+                .hidden(true),
+        )
         .get_matches();
 
     let graveyard: &PathBuf = &{
